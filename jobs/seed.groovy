@@ -3,15 +3,20 @@
 
 job('seed') {
     scm {
-        github 'sheehan/job-dsl-gradle-example'
+        git {
+            remote {
+                github('pietern/caffe2-job-dsl-gradle')
+            }
+            branch('caffe2')
+        }
     }
     triggers {
-        scm 'H/5 * * * *'
+        githubPush()
     }
     steps {
         gradle 'clean test'
         dsl {
-            external 'jobs/**/*Jobs.groovy'
+            external 'jobs/*Jobs.groovy'
             additionalClasspath 'src/main/groovy'
         }
     }
