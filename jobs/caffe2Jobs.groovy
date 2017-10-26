@@ -34,4 +34,7 @@ job("caffe2-pull-request") {
       }
     }
   }
+  steps {
+    shell 'echo Hello world'
+  }
 }
